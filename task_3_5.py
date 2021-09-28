@@ -49,6 +49,6 @@ def get_jokes_adv(n, repeats=True):
     return my_list
 
 
-num = int(input(f'Введите число от 1 до {len(nouns)}: '))
+num = int(input(f'Введите число от 1 до {len(min(nouns, adverbs, adjectives))}: '))
 print(get_jokes_adv(num, False))
 print(get_jokes(num))
