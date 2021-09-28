@@ -34,21 +34,22 @@ def get_jokes(n):
 def get_jokes_adv(n, repeats=True):
     """функция с флагом запрещающим повторы"""
     my_list = []
+    count = 0
     for item in range(n):
         message = []
         for t in nouns, adverbs, adjectives:
-            text = random.choice(t)
-            while text:
-                if not repeats:
-                    message.append(text)
-                    break
-                else:
-                    text = random.choice(t)
-
+            if count < 3:
+                random.shuffle(t)
+                count += 1
+            if not repeats:
+                message.append(t[item])
         my_list.append(' '.join(message))
     return my_list
 
 
 num = int(input(f'Введите число от 1 до {len(min(nouns, adverbs, adjectives))}: '))
-print(get_jokes_adv(num, False))
-print(get_jokes(num))
+if num <= len(min(nouns, adverbs, adjectives)):
+    print(get_jokes_adv(num, False))
+    # print(get_jokes(num))
+else:
+    print('Вы ввели слишком большое число')
